@@ -1,0 +1,29 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Spaire-OAS:
+        inputs:
+            - location: https://api.spairehq.com/openapi.json
+        overlays:
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/security.yml
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/type_parameter.yml
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/read_only.yml
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/event_discriminator.yml
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/timezone_enum.yml
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/event_metadata.yml
+            - location: https://raw.githubusercontent.com/Spaire-Tech/polar/main/sdk/overlays/rebrand.yml
+        registry:
+            location: registry.speakeasyapi.dev/spaire/spaire/spaire-oas
+targets:
+    spaire:
+        target: typescript
+        source: Spaire-OAS
+        publish:
+            npm:
+                token: $npm_token
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/spaire/spaire/spaire-oas-ts-code-samples
+            labelOverride:
+                fixedValue: TypeScript (SDK)
